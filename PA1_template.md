@@ -221,7 +221,33 @@ activity_without_missing_data$day.type <- c("weekend", "weekday", "weekday",
     "weekday", "weekday", "weekday", "weekend")[as.POSIXlt(activity_without_missing_data$date)$wday + 
     1]
 activity_without_missing_data$day.type <- as.factor(activity_without_missing_data$day.type)
+```
 
+
+- A portion of the new dataset 
+
+```r
+summary(activity_without_missing_data)
+```
+
+```
+##      steps                date          interval        day.type    
+##  Min.   :  0.00   2012-10-01:  288   0      :   61   weekday:12960  
+##  1st Qu.:  0.00   2012-10-02:  288   10     :   61   weekend: 4608  
+##  Median :  0.00   2012-10-03:  288   100    :   61                  
+##  Mean   : 37.38   2012-10-04:  288   1000   :   61                  
+##  3rd Qu.: 27.00   2012-10-05:  288   1005   :   61                  
+##  Max.   :806.00   2012-10-06:  288   1010   :   61                  
+##                   (Other)   :15840   (Other):17202
+```
+
+
+
+2. Make a panel plot containing a time series plot (i.e. type = "l") of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all weekday days or weekend days (y-axis). See the README file in the GitHub repository to see an example of what this plot should look like using simulated data.
+
+
+
+```r
 weekday <-activity_without_missing_data[activity_without_missing_data$day.type == 
     "weekday", ]
 weekend <-activity_without_missing_data[activity_without_missing_data$day.type == 
@@ -233,28 +259,7 @@ intervals_day_type <- data.frame(intervals = as.numeric(levels(data$interval)),
     weekday.means, weekend.means)
 intervals_day_type <- intervals_day_type[order(intervals_day_type$intervals), 
     ]
-```
 
-- A portion of the new dataset 
-
-```r
-head(intervals_day_type)
-```
-
-```
-##     intervals weekday.means weekend.means
-## 1           0    2.25115304   0.214622642
-## 226         5    0.44528302   0.042452830
-## 2          10    0.17316562   0.016509434
-## 73         15    0.19790356   0.018867925
-## 136        20    0.09895178   0.009433962
-## 195        25    1.59035639   3.511792453
-```
-
-2. Make a panel plot containing a time series plot (i.e. type = "l") of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all weekday days or weekend days (y-axis). See the README file in the GitHub repository to see an example of what this plot should look like using simulated data.
-
-
-```r
 par <- par(mfrow = c(2, 1))
 plot(intervals_day_type$intervals, intervals_day_type$weekday.means, type = "l", 
     col = "red", ylab = "Average steps", xlab = "Time of day", main = "Average steps 5-minute interval at weekday", 
@@ -266,4 +271,4 @@ plot(intervals_day_type$intervals, intervals_day_type$weekend.means, type = "l",
 axis(side = 1, at = labels.at, labels = labels)
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-18-1.png) 
+![](PA1_template_files/figure-html/unnamed-chunk-19-1.png) 

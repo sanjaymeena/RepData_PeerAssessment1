@@ -135,6 +135,21 @@ activity_without_missing_data$day.type <- c("weekend", "weekday", "weekday",
     1]
 activity_without_missing_data$day.type <- as.factor(activity_without_missing_data$day.type)
 
+```
+
+
+- A portion of the new dataset 
+```{r}
+summary(activity_without_missing_data)
+```
+
+
+
+2. Make a panel plot containing a time series plot (i.e. type = "l") of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all weekday days or weekend days (y-axis). See the README file in the GitHub repository to see an example of what this plot should look like using simulated data.
+
+```{r}
+
+```{r}
 weekday <-activity_without_missing_data[activity_without_missing_data$day.type == 
     "weekday", ]
 weekend <-activity_without_missing_data[activity_without_missing_data$day.type == 
@@ -146,16 +161,7 @@ intervals_day_type <- data.frame(intervals = as.numeric(levels(data$interval)),
     weekday.means, weekend.means)
 intervals_day_type <- intervals_day_type[order(intervals_day_type$intervals), 
     ]
-```
 
-- A portion of the new dataset 
-```{r}
-head(intervals_day_type)
-```
-
-2. Make a panel plot containing a time series plot (i.e. type = "l") of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all weekday days or weekend days (y-axis). See the README file in the GitHub repository to see an example of what this plot should look like using simulated data.
-
-```{r}
 par <- par(mfrow = c(2, 1))
 plot(intervals_day_type$intervals, intervals_day_type$weekday.means, type = "l", 
     col = "red", ylab = "Average steps", xlab = "Time of day", main = "Average steps 5-minute interval at weekday", 
